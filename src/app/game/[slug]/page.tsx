@@ -98,7 +98,7 @@ export default function GameModePage() {
         if (prev <= 1) {
           setFeedback('Czas minął. Lecimy dalej.');
           setStreak(0);
-          setCurrentIndex((current) => current + 1);
+          setCurrentIndex((current) => current + 0.5);
           return getRoundTime(0);
         }
 
@@ -107,7 +107,7 @@ export default function GameModePage() {
     }, 1000);
 
     return () => window.clearInterval(timer);
-  }, [mode, isFinished]);
+  }, [mode, isFinished, currentIndex]);
 
   if (!mode) {
     return (
