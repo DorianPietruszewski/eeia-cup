@@ -80,7 +80,7 @@ export default function AuthPage() {
       return;
     }
 
-    setMessage('Wyslalem link logowania na podany e-mail. Otworz skrzynke i kliknij link.');
+    setMessage('Wysłano link logowania na podany e-mail. Otwórz skrzynkę i kliknij link.');
     setLoading(false);
   }
 
@@ -94,7 +94,7 @@ export default function AuthPage() {
           </div>
 
           <p className="mt-3 text-sm leading-7 text-slate-300">
-            Podaj e-mail. Wyslemy magic link do logowania bez hasla.
+            Podaj e-mail, na który zostanie wysłany link logowania bez hasła.
           </p>
 
           {!hasConfig ? (
@@ -129,13 +129,13 @@ export default function AuthPage() {
               disabled={loading || !hasConfig}
               className="w-full rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
             >
-              {loading ? 'Wysylanie...' : 'Wyslij link logowania'}
+              {loading ? 'Wysyłanie...' : 'Wyślij link logowania'}
             </button>
           </form>
 
           <div className="mt-5 flex items-center justify-between text-sm text-slate-300">
             <Link href="/" className="underline decoration-dotted underline-offset-4">
-              Wroc na start
+              Wróć na stronę główną
             </Link>
             <span>Autoryzacja przez Supabase</span>
           </div>

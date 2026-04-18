@@ -65,7 +65,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/auth"
-                className="inline-flex items-center justify-center rounded-full border border-white/12 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
+                className="inline-flex items-center justify-center rounded-full border border-white/12 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12 hover:shadow-[0_18px_40px_rgba(255,255,255,0.16)]"
               >
                 Zaloguj sie
               </Link>

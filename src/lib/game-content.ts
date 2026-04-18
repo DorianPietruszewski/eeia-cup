@@ -23,31 +23,31 @@ export const GAME_MODES: Record<'lol' | 'cs2', GameMode> = {
     image: '/images/inspiracja/Liga_git_1.png',
     questions: [
       {
-        prompt: 'Ktora umiejetnosc NIE nalezy do Ahri?',
+        prompt: 'Która umiejetność NIE należy do Ahri?',
         answers: ['Orb of Deception', 'Fox-Fire', 'Spirit Rush', 'Chronobreak'],
         correctIndex: 3,
-        flavor: 'Jedna z opcji pochodzi od postaci z zupelnie innej roli.'
+        flavor: 'Jedna z opcji pochodzi od postaci z zupełnie innej roli.'
       },
       {
-        prompt: 'Do ktorej postaci pasuje ultimate "Unstoppable Force"?',
+        prompt: 'Do której postaci pasuje ultimate "Unstoppable Force"?',
         answers: ['Malphite', 'Garen', 'Lux', 'Ezreal'],
         correctIndex: 0,
-        flavor: 'Ikoniczne wejscie tanka startujacego teamfight.'
+        flavor: 'Ikoniczne wejście tanka startujacego teamfight.'
       },
       {
-        prompt: 'Ktory przedmiot jest typowo marksmanowy?',
+        prompt: 'Który przedmiot jest typowo marksmanowy?',
         answers: ['Infinity Edge', 'Rabadons Deathcap', 'Sunfire Aegis', 'Warmogs Armor'],
         correctIndex: 0,
-        flavor: 'Krytyki i AD to glowny trop.'
+        flavor: 'Krytyki i AD to główny trop.'
       },
       {
-        prompt: 'Ktora para jest poprawna?',
+        prompt: 'Która para jest poprawna?',
         answers: ['Zed - assassin', 'Soraka - jungler', 'Sion - enchanter', 'Jinx - tank'],
         correctIndex: 0,
-        flavor: 'Rola musi byc zgodna z najbardziej klasycznym zastosowaniem.'
+        flavor: 'Rola musi być zgodna z najbardziej klasycznym zastosowaniem.'
       },
       {
-        prompt: 'Ktora umiejetnosc to tarcza dla sojusznika od Lulu?',
+        prompt: 'Która umiejetność to tarcza dla sojusznika od Lulu?',
         answers: ['Help, Pix!', 'Glitterlance', 'Whimsy', 'Wild Growth'],
         correctIndex: 0,
         flavor: 'Supportowy shield plus utility.'
@@ -62,34 +62,34 @@ export const GAME_MODES: Record<'lol' | 'cs2', GameMode> = {
     image: '/images/inspiracja/cs_win_fajny.png',
     questions: [
       {
-        prompt: 'Na ktorej mapie znajduje sie miejscowka "Banana"?',
+        prompt: 'Na której mapie znajduje się miejscowka "Banana"?',
         answers: ['Mirage', 'Inferno', 'Nuke', 'Vertigo'],
         correctIndex: 1,
         flavor: 'Klasyczny callout z side B.'
       },
       {
-        prompt: 'Ktory skin jest skojarzony z AWP?',
+        prompt: 'Który skin jest skojarzony z AWP?',
         answers: ['Asiimov', 'Hyper Beast', 'Dragon Lore', 'Redline'],
         correctIndex: 2,
-        flavor: 'To jeden z najbardziej kultowych skinow w historii CS.'
+        flavor: 'To jeden z najbardziej kultowych skinów w historii CS.'
       },
       {
-        prompt: 'Ktory granat sluzy glownie do odcinania wizji?',
+        prompt: 'Który granat sluży glownie do odcinania wizji?',
         answers: ['HE', 'Flashbang', 'Smoke', 'Decoy'],
         correctIndex: 2,
-        flavor: 'Najczesciej uzywany do wykonania wejscia na bombsite.'
+        flavor: 'Najczęściej używany do wykonania wejscia na bombsite.'
       },
       {
         prompt: 'Na jakiej mapie spotkasz callout "Heaven" nad B site?',
         answers: ['Nuke', 'Ancient', 'Dust2', 'Office'],
         correctIndex: 0,
-        flavor: 'Mapa o wyraznej grze wertykalnej.'
+        flavor: 'Mapa o wyraźnej grze wertykalnej.'
       },
       {
-        prompt: 'Ktory zawodnik zaslynal z legendarnej akcji "falling AWP"?',
+        prompt: 'Który zawodnik zasłynął z legendarnej akcji "falling AWP"?',
         answers: ['s1mple', 'NiKo', 'olofmeister', 'device'],
         correctIndex: 0,
-        flavor: 'To kultowy moment z ery turniejow Major.'
+        flavor: 'To kultowy moment z ery turniejów Major.'
       }
     ]
   }

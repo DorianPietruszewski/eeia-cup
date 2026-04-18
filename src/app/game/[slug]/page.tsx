@@ -70,7 +70,7 @@ export default function GameModePage() {
     return (
       <main className="grid min-h-screen place-items-center px-4">
         <div className="w-full max-w-lg rounded-2xl border border-rose-400/35 bg-rose-500/10 p-5 text-sm text-rose-100">
-          Brakuje konfiguracji Supabase w pliku .env. Uzupelnij zmienne i zrestartuj aplikacje.
+          Brakuje konfiguracji Supabase w pliku .env. Uzupełnij zmienne i zrestartuj aplikacje.
         </div>
       </main>
     );
@@ -96,7 +96,7 @@ export default function GameModePage() {
     const timer = window.setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          setFeedback('Czas minal. Lecimy dalej.');
+          setFeedback('Czas minął. Lecimy dalej.');
           setStreak(0);
           setCurrentIndex((current) => current + 1);
           return getRoundTime(0);
@@ -115,7 +115,7 @@ export default function GameModePage() {
         <div>
           <p className="text-lg">Nie znaleziono wybranego trybu gry.</p>
           <Link href="/games" className="mt-4 inline-block underline underline-offset-4">
-            Wroc do wyboru
+            Wróć do wyboru
           </Link>
         </div>
       </main>
@@ -191,7 +191,7 @@ export default function GameModePage() {
             <div className="space-y-4 text-center">
               <h2 className="text-2xl font-semibold text-white">Koniec serii</h2>
               <p className="text-sm text-slate-300">
-                Wynik: {score}/{mode.questions.length}. Jesli chcesz, restartuj i popraw rezultat.
+                Wynik: {score}/{mode.questions.length}. Jesli chcesz, zagraj ponownie.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <button
@@ -201,7 +201,7 @@ export default function GameModePage() {
                   Zagraj ponownie
                 </button>
                 <Link href="/games" className="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white">
-                  Wybierz inna gre
+                  Wybierz inną grę
                 </Link>
               </div>
             </div>
@@ -236,10 +236,10 @@ export default function GameModePage() {
 
         <div className="flex justify-between text-sm text-slate-300">
           <Link href="/games" className="underline decoration-dotted underline-offset-4">
-            Wroc do wyboru gry
+            Wróć do wyboru gry
           </Link>
           <Link href="/" className="underline decoration-dotted underline-offset-4">
-            Strona glowna
+            Strona główna
           </Link>
         </div>
       </div>

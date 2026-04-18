@@ -83,7 +83,7 @@ export default function GamesPage() {
     return (
       <main className="grid min-h-screen place-items-center px-4">
         <div className="w-full max-w-lg rounded-2xl border border-rose-400/35 bg-rose-500/10 p-5 text-sm text-rose-100">
-          Brakuje konfiguracji Supabase w pliku .env. Uzupelnij zmienne i zrestartuj aplikacje.
+          Brakuje konfiguracji Supabase w pliku .env. Uzupełnij zmienne i zrestartuj aplikacje.
         </div>
       </main>
     );
@@ -96,7 +96,7 @@ export default function GamesPage() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">Panel gracza</p>
             <h1 className="mt-2 text-2xl font-semibold text-white">
-              Wybierz tryb gry, {isLoading ? 'Ladowanie...' : nickname}
+              Wybierz tryb gry, {isLoading ? '' : nickname}
             </h1>
           </div>
           <button

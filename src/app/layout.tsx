@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'EEIA CUP',
-  description: 'Portal quizowy EEIA CUP dla trybow League of Legends i Counter-Strike 2.',
+  description: 'Portal quizowy EEIA CUP dla trybów League of Legends i Counter-Strike 2.',
   metadataBase: new URL('https://example.com')
 };
 
