@@ -87,7 +87,7 @@ export default function AuthPage() {
   return (
     <main className="min-h-screen px-4 py-8 sm:px-6">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl items-center justify-center">
-        <section className="w-full max-w-lg rounded-3xl border border-white/10 bg-slate-950/60 p-6 sm:p-8">
+        <section className="w-full max-w-lg rounded-3xl bg-fuchsia-300/25 border border-fuchsia-300/30 p-6 sm:p-8">
           <div className="flex items-center justify-between gap-4">
             <h1 className="text-2xl font-semibold text-white">Logowanie do EEIA CUP</h1>
             <Image src="/images/logo-eeia-cup.png" alt="EEIA CUP" width={72} height={72} />
@@ -104,9 +104,9 @@ export default function AuthPage() {
           ) : null}
 
           <form onSubmit={handleSubmit} className="mt-7 space-y-4">
-            <label className="block text-sm font-medium text-slate-200" htmlFor="email">
+            {/* <label className="block text-sm font-medium text-slate-200" htmlFor="email">
               E-mail
-            </label>
+            </label> */}
             <input
               id="email"
               type="email"
@@ -116,7 +116,7 @@ export default function AuthPage() {
                 setError('');
                 setMessage('');
               }}
-              className="w-full rounded-xl border border-white/15 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-slate-300"
+              className="w-full rounded-xl border border-fuchsia-300/30 bg-black/50 px-4 py-3 text-white outline-none transition focus:border-fuchsia-300/25 focus:ring-1 focus:ring-fuchsia-300/25 focus:bg-black/60"
               placeholder="np. gracz@eeia.pl"
               autoComplete="email"
             />
@@ -127,15 +127,15 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={loading || !hasConfig}
-              className="w-full rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+              className="w-full rounded-xl bg-amber-500/75 px-4 py-3 text-sm font-semibold text-white transition hover:border-fuchsia-300/25 hover:ring-1 hover:ring-fuchsia-300/25 hover:bg-black/60 hover:text-white "
             >
               {loading ? 'Wysyłanie...' : 'Wyślij link logowania'}
             </button>
           </form>
 
           <div className="mt-5 flex items-center justify-between text-sm text-slate-300">
-            <Link href="/" className="underline decoration-dotted underline-offset-4">
-              Wróć na stronę główną
+            <Link href="/" className="rounded-xl bg-white/75 px-4 py-3 text-sm font-semibold text-fuchsia-950 transition hover:border-fuchsia-300/25 hover:ring-1 hover:ring-fuchsia-300/25 hover:bg-black/60 hover:text-white">
+              Strona główna
             </Link>
             <span>Autoryzacja przez Supabase</span>
           </div>
