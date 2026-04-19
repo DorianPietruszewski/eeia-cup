@@ -26,6 +26,7 @@ export default function GameModePage() {
   const [streak, setStreak] = useState(0);
   const [timeLeft, setTimeLeft] = useState(getRoundTime(0));
   const [feedback, setFeedback] = useState('');
+  const [forceFinished, setForceFinished] = useState(false);
 
   useEffect(() => {
     if (!supabase) {
@@ -85,8 +86,8 @@ export default function GameModePage() {
       return false;
     }
 
-    return currentIndex >= mode.questions.length;
-  }, [currentIndex, mode]);
+    return forceFinished || currentIndex >= mode.questions.length;
+  }, [currentIndex, mode, forceFinished]);
 
   useEffect(() => {
     if (!mode || isFinished) {
@@ -97,7 +98,8 @@ export default function GameModePage() {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           setFeedback('Czas minął. Lecimy dalej.');
-          setStreak(0);
+          // setStreak(0);          
+          setForceFinished(true);          
           setCurrentIndex((current) => current + 0.5);
           return getRoundTime(0);
         }
@@ -136,8 +138,10 @@ export default function GameModePage() {
       setStreak((value) => value + 1);
       setFeedback('Dobrze! Kolejna runda bedzie szybsza.');
     } else {
-      setStreak(0);
-      setFeedback('Nie tym razem. Probuj dalej.');
+      // setStreak(0);
+      setForceFinished(true);
+      setFeedback('Zła odpowiedziedź.')
+      
     }
 
     setCurrentIndex((value) => value + 1);
@@ -147,6 +151,7 @@ export default function GameModePage() {
     setCurrentIndex(0);
     setScore(0);
     setStreak(0);
+    setForceFinished(false);
     setFeedback('Nowa seria rozpoczęta.');
   }
 
@@ -169,7 +174,7 @@ export default function GameModePage() {
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Gracz</p>
             <p className="mt-1 truncate text-base font-semibold text-white">
-              {isLoadingAuth ? 'Ladowanie...' : nickname}
+              {isLoadingAuth ? '' : nickname}
             </p>
           </div>
           <div>
@@ -191,7 +196,8 @@ export default function GameModePage() {
             <div className="space-y-4 text-center">
               <h2 className="text-2xl font-semibold text-white">Koniec serii</h2>
               <p className="text-sm text-slate-300">
-                Wynik: {score}/{mode.questions.length}. Jesli chcesz, zagraj ponownie.
+                Wynik: {score}<br/>
+                Jeśli chcesz, zagraj ponownie.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <button
