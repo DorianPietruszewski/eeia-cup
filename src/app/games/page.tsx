@@ -132,16 +132,16 @@ export default function GamesPage() {
         <section className="mb-6 rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-md sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">Zasady trybu</p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-100 sm:text-sm">
+            <div className="flex min-h-[72px] items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-xs leading-snug text-slate-100 sm:min-h-[84px] sm:text-sm">
               Nieskończona seria pytań
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-100 sm:text-sm">
+            <div className="flex min-h-[72px] items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-xs leading-snug text-slate-100 sm:min-h-[84px] sm:text-sm">
               +1 punkt za poprawną odpowiedź
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-100 sm:text-sm">
+            <div className="flex min-h-[72px] items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-xs leading-snug text-slate-100 sm:min-h-[84px] sm:text-sm">
               Błąd kończy podejście
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-100 sm:text-sm">
+            <div className="flex min-h-[72px] items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-xs leading-snug text-slate-100 sm:min-h-[84px] sm:text-sm">
               Czas na odpowiedź przyspiesza z każdą dobrą serią
             </div>
           </div>
