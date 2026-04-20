@@ -18,9 +18,9 @@ export const GAME_MODES: Record<'lol' | 'cs2', GameMode> = {
   lol: {
     slug: 'lol',
     title: 'League of Legends',
-    subtitle: 'Szybkie skojarzenia: umiejetnosci, przedmioty i bohaterowie.',
+    subtitle: 'Szybkie skojarzenia: umiejętności, przedmioty i bohaterowie.',
     themeClass: 'from-cyan-400/35 to-indigo-500/25',
-    image: '/images/inspiracja/Liga_git_1.png',
+    image: '/images/inspiracja/lol_photo.png',
     questions: [
       {
         prompt: 'Która umiejetność NIE należy do Ahri?',
@@ -57,9 +57,9 @@ export const GAME_MODES: Record<'lol' | 'cs2', GameMode> = {
   cs2: {
     slug: 'cs2',
     title: 'Counter-Strike 2',
-    subtitle: 'Mapy, skiny i esportowe skojarzenia pod presja czasu.',
+    subtitle: 'Mapy, skiny i esportowe skojarzenia pod presją czasu.',
     themeClass: 'from-orange-400/35 to-amber-600/25',
-    image: '/images/inspiracja/cs_win_fajny.png',
+    image: '/images/inspiracja/cs2_photo.png',
     questions: [
       {
         prompt: 'Na której mapie znajduje się miejscowka "Banana"?',
