@@ -28,32 +28,37 @@ export default function Home() {
             <Image src="/images/logo-eeia-cup.png" alt="Logo EEIA CUP" width={64} height={64} priority />
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-fuchsia-100/85">EEIA CUP</p>
-              <p className="mt-1 text-sm text-white/62">turniejowy portal 2026</p>
+              <p className="mt-1 text-sm text-white/62">2026</p>
             </div>
           </div>
 
-          <div className="hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.35em] text-amber-200/90 sm:block">
-            Fast entry
-          </div>
+          <Link
+            href="/auth"
+            className="hidden rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90 transition hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
+          >
+            Logowanie
+          </Link>
         </header>
 
         <section className="grid flex-1 items-center gap-8 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10">
           <div className="max-w-2xl">
-            <p className={`${pixelify.className} inline-flex rounded-full border border-fuchsia-300/30 bg-fuchsia-400/10 px-4 py-2 text-xs text-fuchsia-100 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]`}>
-              EEIA CUP 2026
-            </p>
-
             <h1 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-tight text-balance text-white sm:text-5xl lg:text-[4.25rem]">
-              Strona glowna w klimacie
+              Graj i wygrywaj nagrody!
               <span className="block bg-[linear-gradient(90deg,#f7c83a_0%,#e1a0ff_48%,#ffcf63_100%)] bg-clip-text text-transparent">
                 EEIA CUP
               </span>
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-8 text-white/72 sm:text-lg">
-              Fiolet, zloto i pixelowy charakter inspirowany plakatami z katalogu
-              <span className="font-medium text-white"> images/inspiracja</span>. Mniej blokow,
-              wiecej oddechu, ten sam turniejowy charakter.
+              Na stronie znajdziesz gry związane z EEIA CUP, w których zdobywasz punkty za aktywność.
+              Najlepsi uczestnicy rankingu walczą o nagrody.
+            </p>
+
+            <h2 className="mt-5 text-lg font-semibold text-white sm:text-xl">Czym jest EEIA CUP?</h2>
+
+            <p className="mt-2 max-w-xl text-sm leading-7 text-white/65 sm:text-base">
+              EEIA CUP to turniej e-sportowy organizowany przez WRS Politechniki Łódzkiej.
+              Aktualności, harmonogram i najważniejsze informacje możesz śledzić na naszym Facebooku wydarzenia.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -61,13 +66,15 @@ export default function Home() {
                 href="/games"
                 className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#ffd45c_0%,#f4a51c_100%)] px-6 py-3 text-sm font-semibold text-[#1a0918] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(244,165,28,0.28)]"
               >
-                Wejdz do gier
+                Zaloguj się i graj
               </Link>
               <Link
-                href="/auth"
+                href="https://fb.me/e/hOlaJMDFY"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-white/12 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12 hover:shadow-[0_18px_40px_rgba(255,255,255,0.16)]"
               >
-                Zaloguj sie
+                Śledź wydarzenie na Facebooku
               </Link>
             </div>
 
@@ -80,7 +87,7 @@ export default function Home() {
             <div className="h-full overflow-hidden rounded-[32px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl">
               <div className="relative h-full w-full overflow-hidden rounded-[26px] border border-white/10 bg-[#180a18]">
                 <Image
-                  src="/images/inspiracja/cs_win_fajny.png"
+                  src="/images/inspiracja/mainpage_photo.png"
                   alt="Grafika inspirowana motywem EEIA CUP"
                   fill
                   priority
@@ -89,22 +96,13 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,6,17,0.1)_0%,rgba(17,6,17,0.42)_55%,rgba(17,6,17,0.9)_100%)]" />
 
-                <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
-                  <span className={`${pixelify.className} text-xs text-fuchsia-100/90`}>
-                    MOTYW STARTOWY
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] uppercase tracking-[0.3em] text-amber-200/90">
-                    2026
-                  </span>
-                </div>
-
                 <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
                   <div className="max-w-md">
-                    <p className={`${pixelify.className} text-xl leading-none text-white sm:text-2xl`}>
+                    <p className={`${pixelify.className} text-xl leading-none text-amber-200 sm:text-2xl`}>
                       EEIA CUP
                     </p>
                     <p className="mt-1.5 max-w-sm text-xs leading-5 text-white/74 sm:text-sm sm:leading-6">
-                      Jeden mocny obraz, jeden czytelny komunikat i mniej szumu na pierwszym ekranie.
+                      Rozgrywki online trwają. Najlepsi zawodnicy walczą o finał LAN i nagrody.
                     </p>
                   </div>
                 </div>
