@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Pixelify_Sans } from 'next/font/google';
@@ -32,12 +34,21 @@ export default function Home() {
             </div>
           </div>
 
-          <Link
-            href="/auth"
-            className="hidden rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90 transition hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
-          >
-            Logowanie
-          </Link>
+          <div className='flex items-center justify-between gap-4'>
+            <Link
+              href="/ranking"
+              className="hidden rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90 transition hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
+            >
+              Ranking
+            </Link>
+
+            <Link
+              href="/auth"
+              className="hidden rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90 transition hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
+            >
+              Logowanie
+            </Link>
+          </div>
         </header>
 
         <section className="grid flex-1 items-center gap-8 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10">
@@ -57,7 +68,7 @@ export default function Home() {
             <h2 className="mt-5 text-lg font-semibold text-white sm:text-xl">Czym jest EEIA CUP?</h2>
 
             <p className="mt-2 max-w-xl text-sm leading-7 text-white/65 sm:text-base">
-              EEIA CUP to turniej e-sportowy organizowany przez WRS Politechniki Łódzkiej.
+              EEIA CUP to turniej e-sportowy organizowany przez WRS WEEIA Politechniki Łódzkiej.
               Aktualności, harmonogram i najważniejsze informacje możesz śledzić na naszym Facebooku wydarzenia.
             </p>
 
