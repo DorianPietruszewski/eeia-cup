@@ -287,8 +287,13 @@ export default function GameModePage() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-6 sm:px-6 sm:py-8">
-      <div className="mx-auto max-w-5xl space-y-4 sm:space-y-6">
+    <main className="relative min-h-screen overflow-hidden bg-[#0f1118] px-4 py-6 text-white sm:px-6 sm:py-8">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(59,130,246,0.16),transparent_32%),radial-gradient(circle_at_82%_8%,rgba(251,146,60,0.18),transparent_26%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.04),transparent_36%)]"
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,14,0.35),rgba(8,10,14,0.92))]" />
+      <div className="relative mx-auto max-w-5xl space-y-4 sm:space-y-6">
         <header className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/60">
           <div className="relative h-48 sm:h-60">
             <Image src={mode.image} alt={mode.title} fill className="object-cover" priority />
@@ -338,7 +343,7 @@ export default function GameModePage() {
             <div className="space-y-4 py-10 text-center">
               <p className="text-sm text-rose-200">{questionsError}</p>
               <Link href="/games" className="underline decoration-dotted underline-offset-4">
-                Wróć do wyboru gry
+                Wybór gry
               </Link>
             </div>
           ) : isFinished ? (
@@ -390,10 +395,10 @@ export default function GameModePage() {
         </section>
 
         <div className="flex justify-between text-sm text-slate-300">
-          <Link href="/games" className="underline decoration-dotted underline-offset-4">
-            Wróć do wyboru gry
+          <Link href="/games" className="rounded-xl bg-slate-700/20 border border-slate-700/30 px-4 py-2 text-sm font-semibold text-white">
+            Wybór gry
           </Link>
-          <Link href="/" className="underline decoration-dotted underline-offset-4">
+          <Link href="/" className="rounded-xl bg-slate-700/20 border border-slate-700/30 px-4 py-2 text-sm font-semibold text-white">
             Strona główna
           </Link>
         </div>
