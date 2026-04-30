@@ -25,12 +25,12 @@ export default function RegisterPage() {
 
     let mounted = true;
 
-    supabase.auth.getUser().then(({ data, error: authError }) => {
+    supabase.auth.getSession().then(({ data }) => {
       if (!mounted) {
         return;
       }
 
-      if (!authError && data.user) {
+      if (data.session?.user) {
         router.replace('/games');
       }
     });
@@ -79,7 +79,7 @@ export default function RegisterPage() {
     setMessage('');
     setLoading(true);
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email: normalizedEmail,
       password: password,
       options: {
@@ -95,7 +95,13 @@ export default function RegisterPage() {
       return;
     }
 
-    setMessage('Konto zostało utworzone! Zaloguj się używając swoich danych.');
+    if (data.session) {
+      setLoading(false);
+      router.replace('/games');
+      return;
+    }
+
+    setMessage('Konto zostało utworzone. Jeśli w Supabase jest włączone potwierdzenie e-maila, sprawdź skrzynkę i aktywuj konto.');
     setLoading(false);
     setTimeout(() => {
       router.replace('/auth');

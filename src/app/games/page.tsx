@@ -41,18 +41,18 @@ export default function GamesPage() {
 
     let mounted = true;
 
-    supabase.auth.getUser().then(({ data, error }) => {
+    supabase.auth.getSession().then(({ data }) => {
       if (!mounted) {
         return;
       }
 
-      if (error || !data.user) {
-        supabase.auth.signOut();
+      if (!data.session?.user) {
         router.replace('/auth');
+        setIsLoading(false);
         return;
       }
 
-      setNickname(getPlayerDisplayNameFromUser(data.user));
+      setNickname(getPlayerDisplayNameFromUser(data.session.user));
       setIsLoading(false);
     });
 
@@ -60,12 +60,13 @@ export default function GamesPage() {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session?.user) {
-        supabase.auth.signOut();
         router.replace('/auth');
+        setIsLoading(false);
         return;
       }
 
       setNickname(getPlayerDisplayNameFromUser(session.user));
+      setIsLoading(false);
     });
 
     return () => {
@@ -83,7 +84,6 @@ export default function GamesPage() {
     try {
       setIsLoggingOut(true);
       await supabase.auth.signOut();
-      router.push('/');
     } catch (error) {
       console.error('Logout error:', error);
       setIsLoggingOut(false);

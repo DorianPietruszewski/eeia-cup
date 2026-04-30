@@ -105,18 +105,18 @@ export default function GameModePage() {
 
     let mounted = true;
 
-    supabase.auth.getUser().then(({ data, error }) => {
+    supabase.auth.getSession().then(({ data }) => {
       if (!mounted) {
         return;
       }
 
-      if (error || !data.user) {
+      if (!data.session?.user) {
         supabase.auth.signOut();
         router.replace('/auth');
         return;
       }
 
-      setNickname(getPlayerDisplayNameFromUser(data.user));
+      setNickname(getPlayerDisplayNameFromUser(data.session.user));
       setIsLoadingAuth(false);
     });
 

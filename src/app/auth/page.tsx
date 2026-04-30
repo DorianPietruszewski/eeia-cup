@@ -23,12 +23,12 @@ export default function AuthPage() {
 
     let mounted = true;
 
-    supabase.auth.getUser().then(({ data, error: authError }) => {
+    supabase.auth.getSession().then(({ data }) => {
       if (!mounted) {
         return;
       }
 
-      if (!authError && data.user) {
+      if (data.session?.user) {
         router.replace('/games');
       }
     });
@@ -62,13 +62,19 @@ export default function AuthPage() {
     setMessage('');
     setLoading(true);
 
-    const { error: signInError } = await supabase.auth.signInWithPassword({
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
       email: normalizedEmail,
       password: password
     });
 
     if (signInError) {
       setError(signInError.message);
+      setLoading(false);
+      return;
+    }
+
+    if (!data.session) {
+      setError('Zalogowanie nie utworzyło sesji. Sprawdź konfigurację Supabase i status potwierdzenia e-maila.');
       setLoading(false);
       return;
     }
