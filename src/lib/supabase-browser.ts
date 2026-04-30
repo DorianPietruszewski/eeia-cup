@@ -40,3 +40,20 @@ export function getPlayerNameFromEmail(email?: string | null) {
 
   return name;
 }
+
+type SupabaseUserLike = {
+  email?: string | null;
+  user_metadata?: {
+    nickname?: string | null;
+  } | null;
+};
+
+export function getPlayerDisplayNameFromUser(user?: SupabaseUserLike | null) {
+  const nickname = user?.user_metadata?.nickname?.trim();
+
+  if (nickname) {
+    return nickname;
+  }
+
+  return getPlayerNameFromEmail(user?.email);
+}

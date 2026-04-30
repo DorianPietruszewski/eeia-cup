@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getPlayerNameFromEmail, getSupabaseBrowserClient, hasSupabaseConfig } from '@/lib/supabase-browser';
+import { getPlayerDisplayNameFromUser, getSupabaseBrowserClient, hasSupabaseConfig } from '@/lib/supabase-browser';
 
 const games = [
   {
@@ -51,7 +51,7 @@ export default function GamesPage() {
         return;
       }
 
-      setNickname(getPlayerNameFromEmail(data.user.email));
+      setNickname(getPlayerDisplayNameFromUser(data.user));
       setIsLoading(false);
     });
 
@@ -64,7 +64,7 @@ export default function GamesPage() {
         return;
       }
 
-      setNickname(getPlayerNameFromEmail(session.user.email));
+      setNickname(getPlayerDisplayNameFromUser(session.user));
     });
 
     return () => {

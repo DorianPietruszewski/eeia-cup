@@ -37,7 +37,7 @@ export default function Home() {
           <div className='flex items-center justify-between gap-4'>
             <Link
               href="/ranking"
-              className="hidden rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90 transition hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
+              className="inline-flex rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90 transition hover:-translate-y-0.5 hover:bg-white/12"
             >
               Ranking
             </Link>

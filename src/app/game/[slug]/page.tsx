@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { GAME_MODES } from '@/lib/game-content';
-import { getPlayerNameFromEmail, getSupabaseBrowserClient, hasSupabaseConfig } from '@/lib/supabase-browser';
+import { getPlayerDisplayNameFromUser, getSupabaseBrowserClient, hasSupabaseConfig } from '@/lib/supabase-browser';
 
 type QuestionRow = {
   id: number;
@@ -23,8 +23,17 @@ type LoadedQuestion = {
   correctIndex: number;
 };
 
-function getRoundTime(streak: number) {
-  return Math.max(5, 12 - streak);
+function getRoundTime(correctAnswers: number) {
+  if (correctAnswers < 10) {
+    return 45;
+  }
+
+  if (correctAnswers < 20) {
+    return 40;
+  }
+
+  const phaseThreeTime = 30 - Math.floor((correctAnswers - 20) / 5);
+  return Math.max(3, phaseThreeTime);
 }
 
 function normalizeCorrectIndex(correct: number | null) {
@@ -85,6 +94,8 @@ export default function GameModePage() {
   const [timeLeft, setTimeLeft] = useState(getRoundTime(0));
   const [feedback, setFeedback] = useState('');
   const [forceFinished, setForceFinished] = useState(false);
+  const [isSubmittingResult, setIsSubmittingResult] = useState(false);
+  const hasSubmittedResultRef = useRef(false);
 
   useEffect(() => {
     if (!supabase) {
@@ -105,7 +116,7 @@ export default function GameModePage() {
         return;
       }
 
-      setNickname(getPlayerNameFromEmail(data.user.email));
+      setNickname(getPlayerDisplayNameFromUser(data.user));
       setIsLoadingAuth(false);
     });
 
@@ -118,7 +129,7 @@ export default function GameModePage() {
         return;
       }
 
-      setNickname(getPlayerNameFromEmail(session.user.email));
+      setNickname(getPlayerDisplayNameFromUser(session.user));
     });
 
     return () => {
@@ -185,10 +196,10 @@ export default function GameModePage() {
   }, [mode, supabase]);
 
   useEffect(() => {
-    const nextRoundTime = getRoundTime(streak);
+    const nextRoundTime = getRoundTime(score);
     setRoundDuration(nextRoundTime);
     setTimeLeft(nextRoundTime);
-  }, [currentIndex, streak]);
+  }, [currentIndex, score]);
 
   const isFinished = useMemo(() => {
     if (!mode || isLoadingQuestions) {
@@ -197,6 +208,55 @@ export default function GameModePage() {
 
     return forceFinished;
   }, [mode, forceFinished, isLoadingQuestions]);
+
+  useEffect(() => {
+    if (!supabase || !mode || !isFinished || isLoadingAuth || hasSubmittedResultRef.current) {
+      return;
+    }
+
+    let mounted = true;
+
+    async function submitResult() {
+      hasSubmittedResultRef.current = true;
+      setIsSubmittingResult(true);
+
+      const { data, error } = await supabase.auth.getUser();
+
+      if (!mounted) {
+        return;
+      }
+
+      if (error || !data.user) {
+        supabase.auth.signOut();
+        router.replace('/auth');
+        setIsSubmittingResult(false);
+        return;
+      }
+
+      const displayName = getPlayerDisplayNameFromUser(data.user);
+      const { error: submitError } = await supabase.rpc('record_best_score', {
+        p_mode: mode.slug,
+        p_display_name: displayName,
+        p_points: score
+      });
+
+      if (!mounted) {
+        return;
+      }
+
+      if (submitError) {
+        setFeedback(`Nie udało się zapisać wyniku: ${submitError.message}`);
+      }
+
+      setIsSubmittingResult(false);
+    }
+
+    submitResult();
+
+    return () => {
+      mounted = false;
+    };
+  }, [isFinished, isLoadingAuth, mode, router, score, supabase]);
 
   useEffect(() => {
     if (!mode || isFinished || isLoadingQuestions || questions.length === 0) {
@@ -290,6 +350,8 @@ export default function GameModePage() {
     setRoundDuration(getRoundTime(0));
     setTimeLeft(getRoundTime(0));
     setForceFinished(false);
+    setIsSubmittingResult(false);
+    hasSubmittedResultRef.current = false;
     setFeedback('Nowa seria rozpoczęta.');
   }
 
@@ -360,6 +422,7 @@ export default function GameModePage() {
                 Wynik: {score}<br/>
                 Jeśli chcesz, zagraj ponownie.
               </p>
+              {isSubmittingResult ? <p className="text-sm text-slate-400">Zapisuję wynik do rankingu...</p> : null}
               <div className="flex flex-wrap justify-center gap-3">
                 <button
                   onClick={restart}
