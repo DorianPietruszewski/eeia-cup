@@ -147,7 +147,7 @@ export default function Ranking() {
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-slate-300">Wybór trybu</p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                Wybierz tryb i zobacz najlepsze wyniki. Na liście widzisz tylko nazwę i punkty.
+                Wybierz odpowiedni tryb i zobacz wyniki najlepszych zawodników!
               </p>
             </div>
 
