@@ -33,17 +33,8 @@ export default function AuthPage() {
       }
     });
 
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        router.replace('/games');
-      }
-    });
-
     return () => {
       mounted = false;
-      subscription.unsubscribe();
     };
   }, [router, supabase]);
 
@@ -82,8 +73,8 @@ export default function AuthPage() {
       return;
     }
 
-    setMessage('Zalogowano pomyślnie!');
     setLoading(false);
+    router.replace('/games');
   }
 
   return (

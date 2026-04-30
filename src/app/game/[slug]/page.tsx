@@ -100,6 +100,7 @@ export default function GameModePage() {
       }
 
       if (error || !data.user) {
+        supabase.auth.signOut();
         router.replace('/auth');
         return;
       }
@@ -112,6 +113,7 @@ export default function GameModePage() {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session?.user) {
+        supabase.auth.signOut();
         router.replace('/auth');
         return;
       }
@@ -279,9 +281,14 @@ export default function GameModePage() {
   }
 
   function restart() {
+    const nextOrder = shuffleIndices(questions.length);
+
     setCurrentIndex(0);
     setScore(0);
     setStreak(0);
+    setQuestionOrder(nextOrder);
+    setRoundDuration(getRoundTime(0));
+    setTimeLeft(getRoundTime(0));
     setForceFinished(false);
     setFeedback('Nowa seria rozpoczęta.');
   }

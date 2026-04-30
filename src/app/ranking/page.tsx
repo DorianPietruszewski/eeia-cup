@@ -38,6 +38,7 @@ export default function Ranking() {
       }
 
       if (error || !data.user) {
+        supabase.auth.signOut();
         router.replace('/auth');
         return;
       }
@@ -49,6 +50,7 @@ export default function Ranking() {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session?.user) {
+        supabase.auth.signOut();
         router.replace('/auth');
       }
     });
@@ -65,14 +67,16 @@ export default function Ranking() {
       return;
     }
 
+    const client = supabase;
+
     async function loadRanking() {
       setLoadingRows(true);
       setFetchError('');
 
       const query = view === 'lol' ? SQL_LOL_RANKING : SQL_CS2_RANKING;
       const selection = view === 'lol'
-        ? supabase.from('users_tst').select('user_name, LOL_points').gt('LOL_points', 0).order('LOL_points', { ascending: false })
-        : supabase.from('users_tst').select('user_name, CS2_points').gt('CS2_points', 0).order('CS2_points', { ascending: false });
+        ? client.from('users_tst').select('user_name, LOL_points').gt('LOL_points', 0).order('LOL_points', { ascending: false })
+        : client.from('users_tst').select('user_name, CS2_points').gt('CS2_points', 0).order('CS2_points', { ascending: false });
 
       const { data, error } = await selection;
 

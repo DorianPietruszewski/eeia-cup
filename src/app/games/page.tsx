@@ -46,6 +46,7 @@ export default function GamesPage() {
       }
 
       if (error || !data.user) {
+        supabase.auth.signOut();
         router.replace('/auth');
         return;
       }
@@ -58,6 +59,7 @@ export default function GamesPage() {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session?.user) {
+        supabase.auth.signOut();
         router.replace('/auth');
         return;
       }
