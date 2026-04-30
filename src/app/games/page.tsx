@@ -31,6 +31,7 @@ export default function GamesPage() {
   const hasConfig = hasSupabaseConfig();
   const [nickname, setNickname] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     if (!supabase) {
@@ -79,8 +80,14 @@ export default function GamesPage() {
       return;
     }
 
-    await supabase.auth.signOut();
-    router.push('/');
+    try {
+      setIsLoggingOut(true);
+      await supabase.auth.signOut();
+      router.push('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+      setIsLoggingOut(false);
+    }
   }
 
   if (!hasConfig) {
@@ -123,9 +130,10 @@ export default function GamesPage() {
               </Link>
               <button
                 onClick={handleLogout}
-                className="rounded-xl border border-white/20 bg-transparent px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                disabled={isLoggingOut}
+                className="rounded-xl border border-white/20 bg-transparent px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Wyloguj
+                {isLoggingOut ? 'Wylogowuję...' : 'Wyloguj'}
               </button>
             </div>
           </div>

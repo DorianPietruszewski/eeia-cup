@@ -31,41 +31,8 @@ export default function Ranking() {
   const [fetchError, setFetchError] = useState('');
 
   useEffect(() => {
-    if (!supabase) {
-      setIsLoading(false);
-      return;
-    }
-
-    let mounted = true;
-
-    supabase.auth.getUser().then(({ data, error }) => {
-      if (!mounted) {
-        return;
-      }
-
-      if (error || !data.user) {
-        supabase.auth.signOut();
-        router.replace('/auth');
-        return;
-      }
-
-      setIsLoading(false);
-    });
-
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session?.user) {
-        supabase.auth.signOut();
-        router.replace('/auth');
-      }
-    });
-
-    return () => {
-      mounted = false;
-      subscription?.unsubscribe();
-    };
-  }, [router, supabase]);
+    setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     if (!supabase || isLoading) {
