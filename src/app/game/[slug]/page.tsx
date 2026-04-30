@@ -145,6 +145,9 @@ export default function GameModePage() {
       return;
     }
 
+    const client = supabase;
+    const currentMode = mode;
+
     let mounted = true;
 
     async function loadQuestions() {
@@ -160,8 +163,8 @@ export default function GameModePage() {
       setFeedback('');
       setForceFinished(false);
 
-      const { data, error } = await supabase
-        .from(mode.questionsTable)
+      const { data, error } = await client
+        .from(currentMode.questionsTable)
         .select('id, question, optA, optB, optC, optD, correct')
         .order('id', { ascending: true });
 
@@ -214,28 +217,31 @@ export default function GameModePage() {
       return;
     }
 
+    const client = supabase;
+    const currentMode = mode;
+
     let mounted = true;
 
     async function submitResult() {
       hasSubmittedResultRef.current = true;
       setIsSubmittingResult(true);
 
-      const { data, error } = await supabase.auth.getUser();
+      const { data, error } = await client.auth.getUser();
 
       if (!mounted) {
         return;
       }
 
       if (error || !data.user) {
-        supabase.auth.signOut();
+        client.auth.signOut();
         router.replace('/auth');
         setIsSubmittingResult(false);
         return;
       }
 
       const displayName = getPlayerDisplayNameFromUser(data.user);
-      const { error: submitError } = await supabase.rpc('record_best_score', {
-        p_mode: mode.slug,
+      const { error: submitError } = await client.rpc('record_best_score', {
+        p_mode: currentMode.slug,
         p_display_name: displayName,
         p_points: score
       });
